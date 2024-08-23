@@ -97,7 +97,10 @@ const processCarData = (carsData) => {
   return carsData.reduce((acc, car) => {
     const { NameMMT, Prc } = car;
     const [brand, model] = NameMMT.split(" ");
-    const price = parseInt(Prc.replace(/,/g, ""), 10);
+    const replaceComma = Prc.replace(/,/g, "");
+    console.log(replaceComma);
+
+    const price = parseInt(Prc.replace(/[,*]/g, ""), 10);
 
     if (!acc[brand]) {
       acc[brand] = { totalValue: 0, totalCount: 0, models: {} };
