@@ -9,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Card, Container } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // Register necessary components
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
