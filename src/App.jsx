@@ -1,14 +1,31 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Dashboard from "./components/Dashboard";
+import HighlightedCars from "./components/HighlightedCars";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <p> Hello World</p>
-    </>
-  )
-}
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/highlightedcars">Highlighted Cars</Link>
+            </li>
+          </ul>
+        </nav>
 
-export default App
+        <Routes>
+          <Route path="/highlightedcars" element={<HighlightedCars />} />
+          <Route path="/" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
