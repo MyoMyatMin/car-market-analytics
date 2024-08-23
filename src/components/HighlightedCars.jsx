@@ -182,7 +182,7 @@ function HighlightedCars() {
     <tr>
       <td colSpan="2">
         <Button
-          variant={isHighlighted ? "danger" : "primary"}
+          variant={isHighlighted ? "secondary" : "primary"}
           onClick={() =>
             isHighlighted
               ? removeCarFromHighlight(car.Cid)
