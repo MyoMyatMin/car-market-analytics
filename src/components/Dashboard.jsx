@@ -1,7 +1,7 @@
 import React from "react";
 import CarTable from "./CarTable";
 import PieChart from "./PieChart";
-import HighilightedCars from "./HighlightedCars";
+import StackedBarChart from "./StackedBarChart";
 
 const Dashboard = () => {
   return (
@@ -9,7 +9,7 @@ const Dashboard = () => {
       <p>Dashboard</p>
       <CarTable />
       <PieChart />
-      <HighilightedCars />
+      <StackedBarChart />
     </div>
   );
 };
