@@ -3,7 +3,6 @@ import { Tabs, Tab, Button, Container, Row, Col } from "react-bootstrap";
 import data from "../data/taladrod-cars.min.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 function HighlightedCars() {
   const [highlightedCars, setHighlightedCars] = useState([]);
   const [allCars] = useState(data.Cars);
@@ -155,9 +154,9 @@ function HighlightedCars() {
         
         return (
           <Col key={car.Cid} xs={12} sm={6} md={4} lg={3} className="d-flex">
- <table className={`table table-bordered text-center ${isHighlighted ? 'bg-success text-white' : 'bg-light'}`}>
-  <tbody>
-    <tr>
+            <table className={`table table-bordered text-center ${isHighlighted ? 'bg-success text-white' : 'bg-light'}`}>
+               <tbody>
+               <tr>
       <td colSpan="2">
         <img
           src={car.Img100}
@@ -183,11 +182,14 @@ function HighlightedCars() {
     <tr>
       <td colSpan="2">
         <Button
-          variant={isHighlighted ? "secondary" : "primary"}
-          onClick={() => addCarToHighlight(car.Cid)}
-          disabled={isHighlighted}
+          variant={isHighlighted ? "danger" : "primary"}
+          onClick={() =>
+            isHighlighted
+              ? removeCarFromHighlight(car.Cid)
+              : addCarToHighlight(car.Cid)
+          }
         >
-          {isHighlighted ? "Highlighted" : "Highlight"}
+          {isHighlighted ? "Unhighlight" : "Highlight"}
         </Button>
       </td>
     </tr>
@@ -218,26 +220,47 @@ function HighlightedCars() {
                 lg={3}
                 className="mb-4"
               >
-                <div className={`border rounded p-3 text-center ${isHighlighted ? 'bg-success text-white' : 'bg-light'}`}>
-                  <img
-                    src={car.Img100}
-                    alt={car.NameMMT}
-                    className="img-fluid mb-2"
-                  />
-                  <p className="mb-1">
-                    {car.NameMMT}
-                    {isHighlighted && <i className="fas fa-check-circle ml-2"></i>}
-                  </p>
-                  <p className="mb-1">Year: {car.Yr}</p>
-                  <p className="mb-1">Price: {car.Prc}</p>
-                  <Button
-                    variant={isHighlighted ? "secondary" : "primary"}
-                    onClick={() => addCarToHighlight(car.Cid)}
-                    disabled={isHighlighted}
-                  >
-                    {isHighlighted ? "Highlighted" : "Highlight"}
-                  </Button>
-                </div>
+                <table className={`table table-bordered text-center ${isHighlighted ? 'bg-success text-white' : 'bg-light'}`}>
+               <tbody>
+               <tr>
+      <td colSpan="2">
+        <img
+          src={car.Img100}
+          alt={car.NameMMT}
+          className="img-fluid mb-2"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td colSpan="2">
+        {car.NameMMT}
+        {isHighlighted && <i className="fas fa-check-circle ml-2"></i>}
+      </td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td>{car.Yr}</td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td>{car.Prc}</td>
+    </tr>
+    <tr>
+      <td colSpan="2">
+        <Button
+          variant={isHighlighted ? "secondary" : "primary"}
+          onClick={() =>
+            isHighlighted
+              ? removeCarFromHighlight(car.Cid)
+              : addCarToHighlight(car.Cid)
+          }
+        >
+          {isHighlighted ? "Unhighlight" : "Highlight"}
+        </Button>
+      </td>
+    </tr>
+  </tbody>
+</table>
               </Col>
             );
           })}
