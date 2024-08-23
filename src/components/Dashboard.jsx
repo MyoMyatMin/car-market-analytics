@@ -7,9 +7,6 @@ const Dashboard = () => {
   return (
     <div>
       <p>Dashboard</p>
-      <CarTable />
-      <PieChart />
-      <StackedBarChart />
     </div>
   );
 };
