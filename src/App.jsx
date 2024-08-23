@@ -1,8 +1,7 @@
-import { useState } from "react";
-import "./App.css";
 import Dashboard from "./components/Dashboard";
 import HighlightedCars from "./components/HighlightedCars";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   return (
