@@ -22,9 +22,8 @@ const Dashboard = () => {
   const carsByBrandAndModelForTable = processCarData(filteredCars);
 
   return (
-    <div className="container-fluid bg-light min-vh-100">
-      <Header />
-      <div className="container">
+    <div className="container">
+      <h1 className="my-4">Car Dashboard</h1>
         <SearchControls
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -32,17 +31,8 @@ const Dashboard = () => {
         <CarTableSection data={carsByBrandAndModelForTable} />
         <ChartSection carsByBrandAndModel={carsByBrandAndModel} />
       </div>
-    </div>
   );
 };
-
-const Header = () => (
-  <div className="row">
-    <div className="col-12 bg-primary text-white py-4 mb-4">
-      <h1 className="text-center">Car Dashboard</h1>
-    </div>
-  </div>
-);
 
 const SearchControls = ({ searchQuery, setSearchQuery }) => (
   <div className="row mb-4">
