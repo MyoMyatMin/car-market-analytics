@@ -1,6 +1,6 @@
 import Dashboard from "./components/Dashboard";
 import HighlightedCars from "./components/HighlightedCars";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
           <Nav className="me-auto">
             <Nav.Link>
               <Link
-                to="/car-market-analytics/"
+                to="/"
                 className="text-decoration-none"
               >
                 Dashboard
@@ -21,7 +21,7 @@ const App = () => {
 
             <Nav.Link>
               <Link
-                to="/car-market-analytics/highlighted-car"
+                to="/highlighted-car"
                 className="text-decoration-none"
               >
                 Highlighted Cars
@@ -34,10 +34,10 @@ const App = () => {
       <div>
         <Routes>
           <Route
-            path="/car-market-analytics/highlighted-car"
+            path="/highlighted-car"
             element={<HighlightedCars />}
           />
-          <Route path="/car-market-analytics/" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
