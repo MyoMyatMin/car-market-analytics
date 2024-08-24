@@ -24,13 +24,13 @@ const Dashboard = () => {
   return (
     <div className="container">
       <h1 className="my-4">Car Dashboard</h1>
-        <SearchControls
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
-        <CarTableSection data={carsByBrandAndModelForTable} />
-        <ChartSection carsByBrandAndModel={carsByBrandAndModel} />
-      </div>
+      <SearchControls
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+      <CarTableSection data={carsByBrandAndModelForTable} />
+      <ChartSection carsByBrandAndModel={carsByBrandAndModel} />
+    </div>
   );
 };
 
