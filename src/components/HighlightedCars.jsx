@@ -8,7 +8,7 @@ function HighlightedCars() {
   const [allCars] = useState(data.Cars);
   const [activeTab, setActiveTab] = useState("All");
   const [activeAllCarsTab, setActiveAllCarsTab] = useState("All");
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
@@ -88,48 +88,109 @@ function HighlightedCars() {
           onSelect={(k) => setActiveTab(k)}
           className="mb-4"
         >
+          <Tab eventKey="All" title="All">
+            <Row className="my-4">
+              {highlightedCars.map((car) => (
+                <Col
+                  key={car.Cid}
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  className="mb-4"
+                >
+                  <table
+                    className="table table-bordered bg-light text-center"
+                    style={{ height: "100%", minHeight: "300px" }}
+                  >
+                    <tbody>
+                      <tr>
+                        <td colSpan="2">
+                          <img
+                            src={car.Img100}
+                            alt={car.NameMMT}
+                            className="img-fluid mb-2"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colSpan="2">{car.NameMMT}</td>
+                      </tr>
+                      <tr>
+                        <td>Year</td>
+                        <td>{car.Yr}</td>
+                      </tr>
+                      <tr>
+                        <td>Price</td>
+                        <td>{car.Prc}</td>
+                      </tr>
+                      <tr>
+                        <td colSpan="2">
+                          <Button
+                            variant="danger"
+                            onClick={() => removeCarFromHighlight(car.Cid)}
+                          >
+                            Remove
+                          </Button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </Col>
+              ))}
+            </Row>
+          </Tab>
           {brands.map((brand) => (
             <Tab eventKey={brand} title={brand} key={brand}>
               <Row className="my-4">
                 {highlightedCars
                   .filter((car) => car.NameMMT.split(" ")[0] === brand)
                   .map((car) => (
-                    <Col key={car.Cid} xs={12} sm={6} md={4} lg={3} className="mb-4" >
-                      <table className="table table-bordered bg-light text-center" style={{ height: '100%', minHeight: '300px' }}>
-  <tbody>
-    <tr>
-      <td colSpan="2">
-        <img
-          src={car.Img100}
-          alt={car.NameMMT}
-          className="img-fluid mb-2"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td colSpan="2">{car.NameMMT}</td>
-    </tr>
-    <tr>
-      <td>Year</td>
-      <td>{car.Yr}</td>
-    </tr>
-    <tr>
-      <td>Price</td>
-      <td>{car.Prc}</td>
-    </tr>
-    <tr>
-      <td colSpan="2">
-        <Button
-          variant="danger"
-          onClick={() => removeCarFromHighlight(car.Cid)}
-        >
-          Remove
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+                    <Col
+                      key={car.Cid}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      className="mb-4"
+                    >
+                      <table
+                        className="table table-bordered bg-light text-center"
+                        style={{ height: "100%", minHeight: "300px" }}
+                      >
+                        <tbody>
+                          <tr>
+                            <td colSpan="2">
+                              <img
+                                src={car.Img100}
+                                alt={car.NameMMT}
+                                className="img-fluid mb-2"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colSpan="2">{car.NameMMT}</td>
+                          </tr>
+                          <tr>
+                            <td>Year</td>
+                            <td>{car.Yr}</td>
+                          </tr>
+                          <tr>
+                            <td>Price</td>
+                            <td>{car.Prc}</td>
+                          </tr>
+                          <tr>
+                            <td colSpan="2">
+                              <Button
+                                variant="danger"
+                                onClick={() => removeCarFromHighlight(car.Cid)}
+                              >
+                                Remove
+                              </Button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </Col>
                   ))}
               </Row>
@@ -138,134 +199,154 @@ function HighlightedCars() {
         </Tabs>
       )}
 
-<h2 className="my-4">All Cars</h2>
-<Tabs
-  id="all-cars-tabs"
-  activeKey={activeAllCarsTab}
-  onSelect={(k) => setActiveAllCarsTab(k)}
-  className="mb-4"
->
-  <Tab eventKey="All" title="All">
-    <Row className="my-4">
-      {allCars.map((car) => {
-        const isHighlighted = highlightedCars.some(
-          (highlightedCar) => highlightedCar.Cid === car.Cid
-        );
-        
-        return (
-          <Col key={car.Cid} xs={12} sm={6} md={4} lg={3} className="d-flex">
-            <table className={`table table-bordered text-center ${isHighlighted ? 'bg-success text-white' : 'bg-light'}`}>
-               <tbody>
-               <tr>
-      <td colSpan="2">
-        <img
-          src={car.Img100}
-          alt={car.NameMMT}
-          className="img-fluid mb-2"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td colSpan="2">
-        {car.NameMMT}
-        {isHighlighted && <i className="fas fa-check-circle ml-2"></i>}
-      </td>
-    </tr>
-    <tr>
-      <td>Year</td>
-      <td>{car.Yr}</td>
-    </tr>
-    <tr>
-      <td>Price</td>
-      <td>{car.Prc}</td>
-    </tr>
-    <tr>
-      <td colSpan="2">
-        <Button
-          variant={isHighlighted ? "secondary" : "primary"}
-          onClick={() =>
-            isHighlighted
-              ? removeCarFromHighlight(car.Cid)
-              : addCarToHighlight(car.Cid)
-          }
-        >
-          {isHighlighted ? "Unhighlight" : "Highlight"}
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      <h2 className="my-4">All Cars</h2>
+      <Tabs
+        id="all-cars-tabs"
+        activeKey={activeAllCarsTab}
+        onSelect={(k) => setActiveAllCarsTab(k)}
+        className="mb-4"
+      >
+        <Tab eventKey="All" title="All">
+          <Row className="my-4">
+            {allCars.map((car) => {
+              const isHighlighted = highlightedCars.some(
+                (highlightedCar) => highlightedCar.Cid === car.Cid
+              );
 
-          </Col>
-        );
-      })}
-    </Row>
-    </Tab>
-     {allBrands.map((brand) => (
-       <Tab eventKey={brand} title={brand} key={brand}>
-        <Row className="my-4">
-        {allCars
-          .filter((car) => car.NameMMT.split(" ")[0] === brand)
-          .map((car) => {
-            const isHighlighted = highlightedCars.some(
-              (highlightedCar) => highlightedCar.Cid === car.Cid
-            );
-            
-            return (
-              <Col
-                key={car.Cid}
-                xs={12}
-                sm={6}
-                md={4}
-                lg={3}
-                className="mb-4"
-              >
-                <table className={`table table-bordered text-center ${isHighlighted ? 'bg-success text-white' : 'bg-light'}`}>
-               <tbody>
-               <tr>
-      <td colSpan="2">
-        <img
-          src={car.Img100}
-          alt={car.NameMMT}
-          className="img-fluid mb-2"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td colSpan="2">
-        {car.NameMMT}
-        {isHighlighted && <i className="fas fa-check-circle ml-2"></i>}
-      </td>
-    </tr>
-    <tr>
-      <td>Year</td>
-      <td>{car.Yr}</td>
-    </tr>
-    <tr>
-      <td>Price</td>
-      <td>{car.Prc}</td>
-    </tr>
-    <tr>
-      <td colSpan="2">
-        <Button
-          variant={isHighlighted ? "secondary" : "primary"}
-          onClick={() =>
-            isHighlighted
-              ? removeCarFromHighlight(car.Cid)
-              : addCarToHighlight(car.Cid)
-          }
-        >
-          {isHighlighted ? "Unhighlight" : "Highlight"}
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-              </Col>
-            );
-          })}
-         </Row>
-       </Tab>
+              return (
+                <Col
+                  key={car.Cid}
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  className="d-flex"
+                >
+                  <table
+                    className={`table table-bordered text-center ${
+                      isHighlighted ? "bg-success text-white" : "bg-light"
+                    }`}
+                  >
+                    <tbody>
+                      <tr>
+                        <td colSpan="2">
+                          <img
+                            src={car.Img100}
+                            alt={car.NameMMT}
+                            className="img-fluid mb-2"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colSpan="2">
+                          {car.NameMMT}
+                          {isHighlighted && (
+                            <i className="fas fa-check-circle ml-2"></i>
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Year</td>
+                        <td>{car.Yr}</td>
+                      </tr>
+                      <tr>
+                        <td>Price</td>
+                        <td>{car.Prc}</td>
+                      </tr>
+                      <tr>
+                        <td colSpan="2">
+                          <Button
+                            variant={isHighlighted ? "secondary" : "primary"}
+                            onClick={() =>
+                              isHighlighted
+                                ? removeCarFromHighlight(car.Cid)
+                                : addCarToHighlight(car.Cid)
+                            }
+                          >
+                            {isHighlighted ? "Unhighlight" : "Highlight"}
+                          </Button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </Col>
+              );
+            })}
+          </Row>
+        </Tab>
+        {allBrands.map((brand) => (
+          <Tab eventKey={brand} title={brand} key={brand}>
+            <Row className="my-4">
+              {allCars
+                .filter((car) => car.NameMMT.split(" ")[0] === brand)
+                .map((car) => {
+                  const isHighlighted = highlightedCars.some(
+                    (highlightedCar) => highlightedCar.Cid === car.Cid
+                  );
+
+                  return (
+                    <Col
+                      key={car.Cid}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      className="mb-4"
+                    >
+                      <table
+                        className={`table table-bordered text-center ${
+                          isHighlighted ? "bg-success text-white" : "bg-light"
+                        }`}
+                      >
+                        <tbody>
+                          <tr>
+                            <td colSpan="2">
+                              <img
+                                src={car.Img100}
+                                alt={car.NameMMT}
+                                className="img-fluid mb-2"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colSpan="2">
+                              {car.NameMMT}
+                              {isHighlighted && (
+                                <i className="fas fa-check-circle ml-2"></i>
+                              )}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Year</td>
+                            <td>{car.Yr}</td>
+                          </tr>
+                          <tr>
+                            <td>Price</td>
+                            <td>{car.Prc}</td>
+                          </tr>
+                          <tr>
+                            <td colSpan="2">
+                              <Button
+                                variant={
+                                  isHighlighted ? "secondary" : "primary"
+                                }
+                                onClick={() =>
+                                  isHighlighted
+                                    ? removeCarFromHighlight(car.Cid)
+                                    : addCarToHighlight(car.Cid)
+                                }
+                              >
+                                {isHighlighted ? "Unhighlight" : "Highlight"}
+                              </Button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </Col>
+                  );
+                })}
+            </Row>
+          </Tab>
         ))}
       </Tabs>
     </Container>
