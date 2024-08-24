@@ -6,24 +6,21 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 const App = () => {
   return (
     <Router>
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar bg="dark" data-bs-theme="dark" className="fixed-top">
         <Container>
-          <Navbar.Brand>Car Market Analytics</Navbar.Brand>
-          <Nav className="me-auto">
+          <Navbar.Brand className="text-light">
+            Car Market Analytics
+          </Navbar.Brand>
+
+          <Nav className="ms-auto">
             <Nav.Link>
-              <Link
-                to="/"
-                className="text-decoration-none"
-              >
+              <Link to="/" className="text-decoration-none ">
                 Dashboard
               </Link>
             </Nav.Link>
 
             <Nav.Link>
-              <Link
-                to="/highlighted-car"
-                className="text-decoration-none"
-              >
+              <Link to="/highlighted-car" className="text-decoration-none ">
                 Highlighted Cars
               </Link>
             </Nav.Link>
@@ -31,12 +28,9 @@ const App = () => {
         </Container>
       </Navbar>
 
-      <div>
+      <div className="pt-5">
         <Routes>
-          <Route
-            path="/highlighted-car"
-            element={<HighlightedCars />}
-          />
+          <Route path="/highlighted-car" element={<HighlightedCars />} />
           <Route path="/" element={<Dashboard />} />
         </Routes>
       </div>
