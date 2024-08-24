@@ -11,13 +11,13 @@ const App = () => {
           <Navbar.Brand>Car Market Analytics</Navbar.Brand>
           <Nav className="me-auto">  
             <Nav.Link>
-              <Link to="/"  className="text-decoration-none">
+              <Link to="/car-market-analytics/"  className="text-decoration-none">
               DASHBOARD
               </Link>
             </Nav.Link>
 
             <Nav.Link>
-              <Link to="/highlighted-car"  className="text-decoration-none">
+              <Link to="/car-market-analytics/highlighted-car"  className="text-decoration-none">
               Highlighted Cars
               </Link>
             </Nav.Link>
@@ -28,8 +28,8 @@ const App = () => {
       <div>
 
         <Routes>
-          <Route path="/highlighted-car" element={<HighlightedCars />} />
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/car-market-analytics/highlighted-car" element={<HighlightedCars />} />
+          <Route path="/car-market-analytics/" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
